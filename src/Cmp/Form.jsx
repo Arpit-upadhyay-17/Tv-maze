@@ -15,9 +15,6 @@ const Form = ({ show, cancel }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (value === "") {
-      return alert("enter the required fields");
-    }
     return setFormData({ ...formData, [name]: value });
   };
 
@@ -26,7 +23,7 @@ const Form = ({ show, cancel }) => {
     try {
       localStorage.setItem("user", JSON.stringify(formData));
       cancel(false);
-      return navigate(`/user/${formData.email}`);
+      return navigate(`/user`);
     } catch (err) {
     
       return alert("something is missing");
@@ -44,6 +41,7 @@ const Form = ({ show, cancel }) => {
           className="form-control"
           readOnly
           value={show.name}
+          required
           onClick={() => alert("you can not change show name from here!!")}
           id="showName"
         />
@@ -57,6 +55,7 @@ const Form = ({ show, cancel }) => {
           className="form-control"
           readOnly
           value={show.id}
+          required
           onClick={() => alert("you can not change show name from here!!")}
           id="showName"
         />
@@ -71,6 +70,7 @@ const Form = ({ show, cancel }) => {
           value={formData.email}
           onChange={handleChange}
           className="form-control"
+          required
           name="email"
           id="Email"
         />
@@ -86,6 +86,7 @@ const Form = ({ show, cancel }) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          required
           id="recipient-name"
         />
       </div>
@@ -95,6 +96,7 @@ const Form = ({ show, cancel }) => {
           name="day"
           value={formData.day}
           onChange={handleChange}
+          required
           id="Day"
         >
           <option value="">---Day---</option>
@@ -106,6 +108,7 @@ const Form = ({ show, cancel }) => {
           name="slot"
           value={formData.slot}
           onChange={handleChange}
+          required
           id="slot"
         >
           <option value="">---Slot---</option>
